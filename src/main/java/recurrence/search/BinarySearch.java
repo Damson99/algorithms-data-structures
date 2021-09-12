@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public class BinarySearch
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         int[] tab = {1, 32, 5, 123, 1231, 25, 6353, 45, 7, 54645, 6, 457, 45, 74, 56};
         Arrays.sort(tab);
         Arrays.stream(tab).forEach(s -> System.out.print(s + " "));
