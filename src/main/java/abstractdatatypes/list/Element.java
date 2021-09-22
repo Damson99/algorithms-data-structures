@@ -5,29 +5,28 @@ public class Element {
     private int value;
     private Element next;
 
-    public Element(int value) {
-        this.value = value;
+    public Element(int newVal)
+    {
+        this.value = newVal;
         this.next = null;
     }
-
-    public Element getNext() {
-        return next;
-    }
-
-    public int getValue() {
+    public int getValue(){
         return value;
     }
 
-    public void setNext(Element next) {
-        this.next = next;
+    public Element getNext(){
+        return next;
     }
 
-    public void printFurther(String listName) {
+    public void setNext(Element nextVal){
+        next = nextVal;
+    }
+
+    public void printFurther(String listName){
         Element tmp = this;
-        System.out.printf("Further elements: %s", listName);
-        while (tmp != null)
-        {
-            System.out.printf(" %d", tmp.value);
+        System.out.printf("Further elements: %s",listName);
+        while(tmp != null){
+            System.out.printf("%d ",tmp.value);
             tmp = tmp.next;
         }
         System.out.println();

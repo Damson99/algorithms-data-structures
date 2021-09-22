@@ -6,84 +6,81 @@ public class DataList {
     private Element head;
     private Element tail;
 
-    public boolean search(int toFind) {
-        Element tmp = head;
-        boolean result = false;
-        while (tmp != null)
-        {
-            if(tmp.getValue() == toFind)
-            {
-                result = true;
-                break;
-            }
-            tmp = tmp.getNext();
-        }
-
-        return result;
-    }
-
-    public void printResult(String listName)
-    {
-        if(head != null)
-            head.printFurther(listName);
-        else
-            System.out.printf("Lista %s jest pusta\n", listName);
-    }
-
-    public boolean isEmpty() {
+    public boolean isEmpty(){
         return (head == null);
     }
 
-    public Element addToEnd(int value) {
-        Element newElement = new Element(value);
-        if(this.isEmpty())
-        {
+    public Element getHead(){
+        return head;
+    }
+    public Element getTail(){
+        return tail;
+    }
+
+    public Element addToEnd(int newVal){
+        Element newElement = new Element(newVal);
+        if (this.isEmpty())
             head = newElement;
-        }
-        else
-        {
-            head.setNext(newElement);
+        else{
+            tail.setNext(newElement);
             newElement.setNext(null);
         }
         tail = newElement;
         return newElement;
     }
 
-    public Element addSorted(int value) {
-        Element newElement = new Element(value);
-        if(head == null)
-        {
+    public Element addSorted(int newVal){
+        Element newElement = new Element(newVal);
+        if (head == null){
             head = newElement;
             tail = newElement;
             newElement.setNext(null);
             return newElement;
         }
-        Element prev = null, next = head;
+
+        Element prev = null, nextVal = this.head;
         Status status = Status.SEARCH;
-        while (status == Status.SEARCH && next != null)
-            if(next.getValue() >= value)
-                status = Status.STOP;
-            else
-            {
-                prev = next;
-                next = next.getNext();
+        while ((status == Status.SEARCH) && (nextVal != null))
+            if (nextVal.getValue() >= newVal)
+                status=Status.STOP;
+            else{
+                prev = nextVal;
+                nextVal = nextVal.getNext();
             }
-        if(prev == null)
-        {
-            head = newElement;
-            next.setNext(next);
-        }
-        else if(next == null)
-        {
+
+        if (prev == null){
+            head=newElement;
+            newElement.setNext(nextVal);
+        } else
+        if (nextVal == null){
             tail.setNext(newElement);
             newElement.setNext(null);
             tail = newElement;
         }
-        else
-        {
+        else{
             prev.setNext(newElement);
-            newElement.setNext(next);
+            newElement.setNext(nextVal);
         }
         return newElement;
+    }
+
+    public boolean search(int toFind){
+        Element tmp = head;
+        boolean res = false;
+        while (tmp != null){
+            if (tmp.getValue() == toFind){
+                res = true;
+                break;
+            }
+            else tmp=tmp.getNext();
+        }
+        return res;
+    }
+
+    public void printResult(String s){
+        if (head != null)
+            head.printFurther(s);
+        else
+            System.out.printf("%s is empty\n", s);
     }
 }
