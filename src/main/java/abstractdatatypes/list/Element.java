@@ -18,11 +18,29 @@ public class Element {
         return next;
     }
 
-    public void setNext(Element nextVal){
+    public void setNext(Element nextVal)
+    {
         next = nextVal;
     }
 
-    public void printFurther(String listName){
+    public Element sort(Element fir, Element sec)
+    {
+        if(fir == null)
+            return sec;
+        if(sec == null)
+            return fir;
+        if(fir.value <= sec.value){
+            fir.next = sort(fir.next, sec);
+            return fir;
+        }
+        else{
+            sec.next = sort(sec.next, fir);
+            return sec;
+        }
+    }
+
+    public void printFurther(String listName)
+    {
         Element tmp = this;
         System.out.printf("Further elements: %s",listName);
         while(tmp != null){
