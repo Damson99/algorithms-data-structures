@@ -1,4 +1,4 @@
-package abstractdatatypes;
+package abstractdatatypes.person.main;
 
 import abstractdatatypes.list.DataList;
 
