@@ -1,5 +1,7 @@
 package computingsystems;
 
+import static util.Logger.log;
+
 public class BitsOperations
 {
     public static final byte OPTION_1 = 1;
@@ -9,7 +11,7 @@ public class BitsOperations
 
     public static void main(String[] args)
     {
-        System.out.println("i\tbinarne\tprzes.w lewo\tnegacja\n");
+        log("i\tbinarne\tprzes.w lewo\tnegacja\n");
         for(int i = 9; i < 33; i++)
         {
             System.out.print(i + "\t");

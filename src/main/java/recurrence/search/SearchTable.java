@@ -1,5 +1,7 @@
 package recurrence.search;
 
+import static util.Logger.log;
+
 public class SearchTable
 {
     public static void main(String[] args) {
@@ -13,9 +15,9 @@ public class SearchTable
     private static void search(int[] tab, int leftIndex, int lastIndex, int elementToFind)
     {
         if(leftIndex > lastIndex)
-            System.out.println("404 : Not found");
+            log("404 : Not found");
         else if (tab[leftIndex] == elementToFind)
-            System.out.println("Element " + elementToFind + " was found on " + leftIndex + " index in table");
+            log("Element " + elementToFind + " was found on " + leftIndex + " index in table");
         else
             search(tab, leftIndex + 1, lastIndex, elementToFind);
     }

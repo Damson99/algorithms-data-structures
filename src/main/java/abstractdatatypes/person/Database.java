@@ -1,18 +1,23 @@
 package abstractdatatypes.person;
 
 import abstractdatatypes.Status;
+import util.Logger;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Database {
+import static util.Logger.*;
+
+public class Database
+{
     private final static ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     private final PersonRecords personRecords = new PersonRecords();
     private SurnameIndex headSurname, tailSurname;
     private SalaryIndex headSalary, tailSalary;
 
-    public void add(String surname, int salary){
+    public void add(String surname, int salary)
+    {
         Person newRef = personRecords.addToEnd(surname, salary);
         CompletableFuture<SalaryIndex> cfSalaryInx = CompletableFuture.supplyAsync(()->addSortedSalary(newRef), threadPool);
         CompletableFuture<SurnameIndex> cfSurnameInx = CompletableFuture.supplyAsync(()->addSortedSurname(newRef), threadPool);
@@ -20,35 +25,39 @@ public class Database {
         cfSurnameInx.join();
     }
 
-    public void remove(String surname){
+    public void remove(String surname)
+    {
         CompletableFuture.supplyAsync(()->personRecords.removeUnsorted(surname), threadPool);
         CompletableFuture.supplyAsync(()->removeSortedBySalary(surname), threadPool);
         CompletableFuture.supplyAsync(()->removeSortedBySurname(surname), threadPool);
     }
 
-    public void shutDownThreadPool(){
+    public void shutDownThreadPool()
+    {
         threadPool.shutdown();
     }
 
-    public void printSortedBySurname(String s){
-        System.out.println(s);
+    public void printSortedBySurname(String s)
+    {
+        log(s);
         if(headSurname!=null)
             this.headSurname.printFurther(s);
-        else System.out.println("List is empty");
+        else log("List is empty");
     }
 
     public void printSortedBySalary(String s){
-        System.out.println(s);
+        log(s);
         if(headSalary!=null)
             this.headSalary.printFurther(s);
-        else System.out.println("List is empty");
+        else log("List is empty");
     }
 
     public void print(String s) {
         personRecords.printResults(s);
     }
 
-    private Database removeSortedBySalary(String surname) {
+    private Database removeSortedBySalary(String surname)
+    {
         SalaryIndex tmp=headSalary, prev=null;
         boolean isFind=false;
         while(tmp!=null){
@@ -62,7 +71,7 @@ public class Database {
             }
         }
         if(!isFind){
-            System.out.println("SalaryIndex record does not found for:" + surname);
+            log("SalaryIndex record does not found for:" + surname);
             return this;
         }
         else if(prev==null && tmp.getNext()==null){
@@ -85,7 +94,8 @@ public class Database {
         }
     }
 
-    private Database removeSortedBySurname(String surname) {
+    private Database removeSortedBySurname(String surname)
+    {
         SurnameIndex tmp=headSurname, prev=null;
         boolean isFind=false;
         while(tmp!=null){
@@ -99,7 +109,7 @@ public class Database {
             }
         }
         if(!isFind){
-            System.out.println("SurnameIndex record does not found for:" + surname);
+            log("SurnameIndex record does not found for:" + surname);
             return this;
         }
         else if(prev==null && tmp.getNext()==null){
@@ -122,7 +132,8 @@ public class Database {
         }
     }
 
-    public SurnameIndex addSortedSurname(Person newRef) {
+    public SurnameIndex addSortedSurname(Person newRef)
+    {
         SurnameIndex newPerson = new SurnameIndex();
         newPerson.setRef(newRef);
         if(headSurname==null){
@@ -158,7 +169,8 @@ public class Database {
         return newPerson;
     }
 
-    public SalaryIndex addSortedSalary(Person newRef) {
+    public SalaryIndex addSortedSalary(Person newRef)
+    {
         SalaryIndex newPerson = new SalaryIndex();
         newPerson.setRef(newRef);
         if(headSalary==null){

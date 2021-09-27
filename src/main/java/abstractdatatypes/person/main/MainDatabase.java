@@ -2,6 +2,8 @@ package abstractdatatypes.person.main;
 
 import abstractdatatypes.person.Database;
 
+import static util.Logger.log;
+
 public class MainDatabase {
     public static void main(String[] args) {
         Database db = new Database();
@@ -16,10 +18,10 @@ public class MainDatabase {
         db.printSortedBySalary("List of data - sorted by salary");
         db.printSortedBySurname("List of data - sorted by surname alphabetic");
 
-        System.out.println("Deleting Boner...");
+        log("Deleting Boner...");
         db.remove("Boner");
 
-        System.out.println("Deleting Ziober...");
+        log("Deleting Ziober...");
         db.remove("Ziober");
 
         System.out.println();

@@ -2,6 +2,8 @@ package abstractdatatypes.person.main;
 
 import abstractdatatypes.list.DataList;
 
+import static util.Logger.log;
+
 public class MainDataList
 {
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class MainDataList
         list.printResult( "List number 1 without sorting: ");
         list2.printResult("List number 2 with sorting:    ");
 
-        System.out.println("\nIs 6 in list: " + list.search(6));
+        log("\nIs 6 in list: " + list.search(6));
         System.out.println();
 
         list3 = list.joinTwoLists(list, list2);

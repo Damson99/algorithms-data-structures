@@ -2,6 +2,8 @@ package recurrence.search;
 
 import java.util.Arrays;
 
+import static util.Logger.log;
+
 public class BinarySearch
 {
     public static void main(String[] args)
@@ -10,8 +12,8 @@ public class BinarySearch
         Arrays.sort(tab);
         Arrays.stream(tab).forEach(s -> System.out.print(s + " "));
         int toFind = 5;
-        System.out.println("Looking for 5");
-        System.out.println("5 was found at " + binarySearchWithSortedTab(tab, toFind, 0, tab.length - 1) + " index");
+        log("Looking for 5");
+        log("5 was found at " + binarySearchWithSortedTab(tab, toFind, 0, tab.length - 1) + " index");
     }
 
     private static int binarySearchWithSortedTab(int[] tab, int toFind, int left, int right)

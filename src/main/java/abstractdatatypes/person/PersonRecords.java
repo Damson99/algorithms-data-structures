@@ -1,5 +1,7 @@
 package abstractdatatypes.person;
 
+import static util.Logger.log;
+
 public class PersonRecords
 {
     private Person head, tail;
@@ -41,7 +43,7 @@ public class PersonRecords
             }
         }
         if(!isFind){
-            System.out.println("Record does not found for: " + surname);
+            log("Record does not found for: " + surname);
             return this;
         }
         if(prev==null && tmp.getNextPerson()==null) {

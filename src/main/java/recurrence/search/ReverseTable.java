@@ -1,5 +1,7 @@
 package recurrence.search;
 
+import static util.Logger.log;
+
 public class ReverseTable
 {
     public static void main(String[] args) {
@@ -7,7 +9,7 @@ public class ReverseTable
         for (int i : tab)
             System.out.print(i + " ");
 
-        System.out.println("\nReversed: ");
+        log("\nReversed: ");
 
         reverse(tab, 0, tab.length - 1);
         for (int i : tab)

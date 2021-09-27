@@ -1,10 +1,13 @@
 package recurrence.math;
 
+
+import static util.Logger.*;
+
 //Greatest Common Divisor
 public class GCD
 {
     public static void main(String[] args) {
-        System.out.println(nwd(1230123, 1241259));
+        log(nwd(1230123, 1241259));
     }
 
     private static int nwd(int a, int b)

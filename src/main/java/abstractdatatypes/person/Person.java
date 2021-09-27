@@ -1,5 +1,7 @@
 package abstractdatatypes.person;
 
+import static util.Logger.log;
+
 public class Person
 {
     private String surname;
@@ -13,7 +15,7 @@ public class Person
     }
 
     public void printFurther(String printListFromHere) {
-        System.out.println(printListFromHere);
+        log(printListFromHere);
         Person tmp = this;
         while (tmp != null){
             System.out.printf(" %12s earn \t%4d\n", tmp.getSurname(), tmp.getSalary());

@@ -2,6 +2,8 @@ package recurrence.math;
 
 import util.NumberValidator;
 
+import static util.Logger.log;
+
 
 public class Fibonacci extends NumberValidator
 {
@@ -12,9 +14,9 @@ public class Fibonacci extends NumberValidator
         {
             int providedNumber = Integer.parseInt(data);
             for(long i = 0; i < providedNumber; i++)
-                System.out.println("fib[ " + i + "] = " + fib(i));
+                log("fib[ " + i + "] = " + fib(i));
         }
-        else System.out.println("Provide valid number");
+        else log("Provide valid number");
     }
 
     private static long fib(long x) {
