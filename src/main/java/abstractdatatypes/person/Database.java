@@ -2,19 +2,32 @@ package abstractdatatypes.person;
 
 import abstractdatatypes.Status;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Database {
+    private final static ExecutorService threadPool = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     private final PersonRecords personRecords = new PersonRecords();
     private SurnameIndex headSurname, tailSurname;
     private SalaryIndex headSalary, tailSalary;
 
-    public void addSorted(String surname, int salary){
+    public void add(String surname, int salary){
         Person newRef = personRecords.addToEnd(surname, salary);
-        addSortedSalary(newRef);
-        addSortedSurname(newRef);
+        CompletableFuture<SalaryIndex> cfSalaryInx = CompletableFuture.supplyAsync(()->addSortedSalary(newRef), threadPool);
+        CompletableFuture<SurnameIndex> cfSurnameInx = CompletableFuture.supplyAsync(()->addSortedSurname(newRef), threadPool);
+        cfSalaryInx.join();
+        cfSurnameInx.join();
     }
 
-    public void remove(String s){
-        personRecords.remove(s);
+    public void remove(String surname){
+        CompletableFuture.supplyAsync(()->personRecords.removeUnsorted(surname), threadPool);
+        CompletableFuture.supplyAsync(()->removeSortedBySalary(surname), threadPool);
+        CompletableFuture.supplyAsync(()->removeSortedBySurname(surname), threadPool);
+    }
+
+    public void shutDownThreadPool(){
+        threadPool.shutdown();
     }
 
     public void printSortedBySurname(String s){
@@ -33,6 +46,80 @@ public class Database {
 
     public void print(String s) {
         personRecords.printResults(s);
+    }
+
+    private Database removeSortedBySalary(String surname) {
+        SalaryIndex tmp=headSalary, prev=null;
+        boolean isFind=false;
+        while(tmp!=null){
+            if(tmp.getRef().getSurname().equals(surname)){
+                isFind=true;
+                break;
+            }
+            else{
+                prev=tmp;
+                tmp=tmp.getNext();
+            }
+        }
+        if(!isFind){
+            System.out.println("SalaryIndex record does not found for:" + surname);
+            return this;
+        }
+        else if(prev==null && tmp.getNext()==null){
+            headSalary=null;
+            tailSalary=null;
+            return this;
+        }
+        else if(prev==null && tmp.getNext()!=null){
+            headSalary=tmp.getNext();
+            return this;
+        }
+        else if(prev!=null && tmp.getNext()==null){
+            prev.setNext(null);
+            headSalary=prev;
+            return this;
+        }
+        else{
+            prev.setNext(tmp.getNext());
+            return this;
+        }
+    }
+
+    private Database removeSortedBySurname(String surname) {
+        SurnameIndex tmp=headSurname, prev=null;
+        boolean isFind=false;
+        while(tmp!=null){
+            if(tmp.getRef().getSurname().equals(surname)){
+                isFind=true;
+                break;
+            }
+            else{
+                prev=tmp;
+                tmp=tmp.getNext();
+            }
+        }
+        if(!isFind){
+            System.out.println("SurnameIndex record does not found for:" + surname);
+            return this;
+        }
+        else if(prev==null && tmp.getNext()==null){
+            headSurname=null;
+            tailSurname=null;
+            return this;
+        }
+        else if(prev==null && tmp.getNext()!=null){
+            headSurname=tmp.getNext();
+            return this;
+        }
+        else if(prev!=null && tmp.getNext()==null){
+            prev.setNext(null);
+            headSurname=prev;
+            return this;
+        }
+        else{
+            prev.setNext(tmp.getNext());
+            return this;
+        }
     }
 
     public SurnameIndex addSortedSurname(Person newRef) {

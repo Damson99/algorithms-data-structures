@@ -5,13 +5,12 @@ import abstractdatatypes.person.Database;
 public class MainDatabase {
     public static void main(String[] args) {
         Database db = new Database();
-        db.addSorted("Wieczorek", 20_000);
-        db.addSorted("Kowalski", 5_000);
-        db.addSorted("Ziober", 2_000);
-        db.addSorted("Bomber", 10_000);
-        db.addSorted("Walaszak", 12_000);
-        db.addSorted("Boner", 4_000);
-        db.addSorted("Boner", 4_000);
+        db.add("Wieczorek", 20_000);
+        db.add("Kowalski", 5_000);
+        db.add("Ziober", 2_000);
+        db.add("Bomber", 10_000);
+        db.add("Walaszak", 12_000);
+        db.add("Boner", 4_000);
 
         db.print("List of data - unsorted");
         db.printSortedBySalary("List of data - sorted by salary");
@@ -27,5 +26,6 @@ public class MainDatabase {
         db.print("List of data - unsorted");
         db.printSortedBySalary("List of data - sorted by salary");
         db.printSortedBySurname("List of data - sorted by surname alphabetic");
+        db.shutDownThreadPool();
     }
 }

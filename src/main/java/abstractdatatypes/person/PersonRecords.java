@@ -27,20 +27,6 @@ public class PersonRecords
             System.out.printf("PersonRecords %s is empty\n", listName);
     }
 
-    public void remove(String surname){
-        removeUnsorted(surname);
-        removeSortedBySurname(surname);
-        removeSortedBySalary(surname);
-    }
-
-    private void removeSortedBySalary(String surname) {
-//        todo
-    }
-
-    private void removeSortedBySurname(String surname) {
-//        todo
-    }
-
     public PersonRecords removeUnsorted(String surname){
         Person tmp=head, prev=null;
         boolean isFind=false;
