@@ -1,4 +1,4 @@
-package abstractdatatypes.table;
+package abstractdatatypes.array;
 
 public class Card {
     private String surname;

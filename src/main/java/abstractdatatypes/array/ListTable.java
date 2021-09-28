@@ -1,4 +1,4 @@
-package abstractdatatypes.table;
+package abstractdatatypes.array;
 
 import static util.Logger.log;
 

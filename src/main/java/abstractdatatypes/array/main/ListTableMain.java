@@ -1,6 +1,6 @@
-package abstractdatatypes.table.main;
+package abstractdatatypes.array.main;
 
-import abstractdatatypes.table.ListTable;
+import abstractdatatypes.array.ListTable;
 
 import static util.Logger.log;
 
