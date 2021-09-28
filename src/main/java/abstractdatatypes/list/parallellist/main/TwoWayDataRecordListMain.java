@@ -1,4 +1,4 @@
-package abstractdatatypes.array.main;
+package abstractdatatypes.list.parallellist.main;
 
 import abstractdatatypes.list.parallellist.TwoWayDataRecordList;
 
