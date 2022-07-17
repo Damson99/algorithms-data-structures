@@ -4,15 +4,12 @@ import util.AppFrame;
 
 import java.awt.*;
 
-public class Spiral extends Canvas
-{
+public class Spiral extends Canvas {
     private final int alpha = 10;
 
-    public void drawSpiral(int straight, int x, int y)
-    {
+    public void drawSpiral(int straight, int x, int y) {
         Graphics g = this.getGraphics();
-        if(straight > 0)
-        {
+        if (straight > 0) {
             g.drawLine(x, y, x + straight, y);
             g.drawLine(x + straight, y, x + straight, y + straight);
             g.drawLine(x + straight, y + straight, x + alpha, y + straight);
@@ -22,8 +19,7 @@ public class Spiral extends Canvas
         }
     }
 
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         int with = this.getWidth();
         drawSpiral(with - 50, 15, 15);
     }

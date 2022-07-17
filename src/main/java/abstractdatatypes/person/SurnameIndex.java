@@ -1,14 +1,14 @@
 package abstractdatatypes.person;
 
-public class SurnameIndex{
+public class SurnameIndex {
     Person ref;
     SurnameIndex next;
 
-    public void printFurther(String s){
-        SurnameIndex tmp=this;
-        while(tmp!=null){
+    public void printFurther(String s) {
+        SurnameIndex tmp = this;
+        while (tmp != null) {
             System.out.printf(" %12s earn \t%4d\n", tmp.ref.getSurname(), tmp.ref.getSalary());
-            tmp=tmp.getNext();
+            tmp = tmp.getNext();
         }
         System.out.println();
     }
@@ -18,7 +18,7 @@ public class SurnameIndex{
     }
 
     public void setRef(Person ref) {
-        this.ref=ref;
+        this.ref = ref;
     }
 
     public SurnameIndex getNext() {

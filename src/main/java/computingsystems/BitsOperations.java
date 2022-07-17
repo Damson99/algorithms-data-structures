@@ -2,18 +2,15 @@ package computingsystems;
 
 import static util.Logger.log;
 
-public class BitsOperations
-{
+public class BitsOperations {
     public static final byte OPTION_1 = 1;
     public static final byte OPTION_2 = 2;
     public static final byte OPTION_3 = 4;
     public static final byte OPTION_4 = 8;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         log("i\tbinarne\tprzes.w lewo\tnegacja\n");
-        for(int i = 9; i < 33; i++)
-        {
+        for (int i = 9; i < 33; i++) {
             System.out.print(i + "\t");
             showBits((char) i);
 
@@ -22,7 +19,7 @@ public class BitsOperations
             showBits((char) j);
 
             System.out.print("\t");
-            int k = i -1;
+            int k = i - 1;
             showBits((char) k);
 
             System.out.println();
@@ -33,13 +30,11 @@ public class BitsOperations
         showBits((char) options);
     }
 
-    private static void showBits(char s)
-    {
-        char[] weights = {1, 2, 4,8, 16 ,32, 64, 128};
-        for(int i = 7; i >=0; i--)
-        {
+    private static void showBits(char s) {
+        char[] weights = {1, 2, 4, 8, 16, 32, 64, 128};
+        for (int i = 7; i >= 0; i--) {
             int bit = (weights[i] & s);
-            if(bit != 0) System.out.print("1");
+            if (bit != 0) System.out.print("1");
             else System.out.print("0");
         }
     }

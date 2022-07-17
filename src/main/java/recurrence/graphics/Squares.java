@@ -4,16 +4,13 @@ import util.AppFrame;
 
 import java.awt.*;
 
-public class Squares extends Canvas
-{
-    public void drawSquares(int n, int straight, int x, int y)
-    {
+public class Squares extends Canvas {
+    public void drawSquares(int n, int straight, int x, int y) {
         Graphics g = this.getGraphics();
-        if(n > 0)
-        {
+        if (n > 0) {
             g.drawLine(x, y, x + straight, y);
             g.drawLine(x + straight, y, x + straight, y + straight);
-            g.drawLine(x + straight, y + straight, x, y+ straight);
+            g.drawLine(x + straight, y + straight, x, y + straight);
             g.drawLine(x, y + straight, x, y + straight / 2);
             g.drawLine(x, y + straight / 2, x + straight / 2, y + straight);
             g.drawLine(x + straight / 2, y + straight, x + straight, y + straight / 2);
@@ -22,12 +19,11 @@ public class Squares extends Canvas
 
             drawSquares(n - 1, straight / 2, x + straight / 4, y + straight / 4);
             g.drawLine(x + straight / 4, y + straight / 4, x, y + straight / 2);
-            g.drawLine(x, y + straight / 2, x ,y);
+            g.drawLine(x, y + straight / 2, x, y);
         }
     }
 
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         int with = this.getWidth();
         drawSquares(10, 700, 15, 15);
     }

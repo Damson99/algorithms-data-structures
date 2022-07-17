@@ -2,8 +2,7 @@ package abstractdatatypes.person;
 
 import static util.Logger.log;
 
-public class Person
-{
+public class Person {
     private String surname;
     private int salary;
     private Person nextPerson;
@@ -17,7 +16,7 @@ public class Person
     public void printFurther(String printListFromHere) {
         log(printListFromHere);
         Person tmp = this;
-        while (tmp != null){
+        while (tmp != null) {
             System.out.printf(" %12s earn \t%4d\n", tmp.getSurname(), tmp.getSalary());
             tmp = tmp.getNextPerson();
         }

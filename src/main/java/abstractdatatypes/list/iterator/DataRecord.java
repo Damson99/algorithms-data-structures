@@ -1,18 +1,14 @@
 package abstractdatatypes.list.iterator;
 
-public class DataRecord
-{
-    private char value;
+public class DataRecord {
+    private final char value;
     private DataRecord next;
 
-
-    public void print()
-    {
+    public void print() {
         System.out.print(value + " ");
     }
 
-    public DataRecord(char value)
-    {
+    public DataRecord(char value) {
         this.value = value;
     }
 
@@ -24,8 +20,7 @@ public class DataRecord
         this.next = next;
     }
 
-    public char getValue()
-    {
+    public char getValue() {
         return value;
     }
 }

@@ -2,8 +2,7 @@ package recurrence.search;
 
 import static util.Logger.log;
 
-public class ReverseTable
-{
+public class ReverseTable {
     public static void main(String[] args) {
         int[] tab = {1, 4, 3, 6, 1023, 3123124, 6341, 75, 9, 0};
         for (int i : tab)
@@ -18,8 +17,7 @@ public class ReverseTable
 
     private static void reverse(int[] tab, int left, int right) {
         int tmp;
-        if(left < right)
-        {
+        if (left < right) {
             tmp = tab[left];
             tab[left] = tab[right];
             tab[right] = tmp;

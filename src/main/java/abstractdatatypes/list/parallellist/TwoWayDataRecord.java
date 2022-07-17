@@ -1,8 +1,7 @@
 package abstractdatatypes.list.parallellist;
 
 //lista dwukierunkowa - obudowana przez DataRecordList
-public class TwoWayDataRecord
-{
+public class TwoWayDataRecord {
     private String surname;
     private int age;
     private TwoWayDataRecord next;
