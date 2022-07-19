@@ -11,7 +11,7 @@ public class Logger {
     }
 
     private static void logInfo(String s) {
-        System.out.println("[" + Thread.currentThread().getName() + "] - [" + s + "]");
+        System.out.println(s);
     }
 
 }
