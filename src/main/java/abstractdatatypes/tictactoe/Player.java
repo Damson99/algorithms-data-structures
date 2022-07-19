@@ -1,4 +1,4 @@
-package artificial.intelligence.tictactoe;
+package abstractdatatypes.tictactoe;
 
 enum Player {
     BOT,

@@ -1,11 +1,11 @@
-package artificial.intelligence.tictactoe;
+package abstractdatatypes.tictactoe;
 
 import util.Logger;
 
 import java.util.Scanner;
 
-import static artificial.intelligence.tictactoe.Board.DRAW;
-import static artificial.intelligence.tictactoe.Constants.*;
+import static abstractdatatypes.tictactoe.Board.DRAW;
+import static abstractdatatypes.tictactoe.Constants.*;
 
 class Main {
     private static Scanner scanner;

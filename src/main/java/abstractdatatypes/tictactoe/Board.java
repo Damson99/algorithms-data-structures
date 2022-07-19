@@ -1,12 +1,12 @@
-package artificial.intelligence.tictactoe;
+package abstractdatatypes.tictactoe;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import util.Logger;
 
-import static artificial.intelligence.tictactoe.Constants.FIELDS_ON_BOARD;
-import static artificial.intelligence.tictactoe.Constants.ROWS_IN_COLUMN;
+import static abstractdatatypes.tictactoe.Constants.FIELDS_ON_BOARD;
+import static abstractdatatypes.tictactoe.Constants.ROWS_IN_COLUMN;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

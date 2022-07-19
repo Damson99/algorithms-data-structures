@@ -1,4 +1,4 @@
-package artificial.intelligence.tictactoe;
+package abstractdatatypes.tictactoe;
 
 public enum GameStatus {
     PENDING,

@@ -1,4 +1,4 @@
-package artificial.intelligence.tictactoe;
+package abstractdatatypes.tictactoe;
 
 import lombok.AccessLevel;
 import lombok.Data;
