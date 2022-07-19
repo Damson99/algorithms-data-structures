@@ -4,6 +4,7 @@ import util.Logger;
 
 import java.util.Scanner;
 
+import static artificial.intelligence.tictactoe.Board.DRAW;
 import static artificial.intelligence.tictactoe.Constants.*;
 
 class Main {
@@ -80,8 +81,10 @@ class Main {
     }
 
     private static int evaluate(Board board, Player player) {
-        int value = 0;
         int gameResult = board.isGameFinished();
+        if (gameResult == DRAW) {
+            return gameResult;
+        }
         if (gameResult != 0) {
             if (board.isGameFinished(gameResult, player)) {
                 return MINUS_INFINITY;
@@ -89,6 +92,7 @@ class Main {
                 return PLUS_INFINITY;
             }
         }
+        int value = 0;
         value = evaluateRows(board, player, value);
         value = evaluateColumns(board, player, value);
         value = evaluateForFirstCross(board, player, value);

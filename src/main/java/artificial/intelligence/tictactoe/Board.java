@@ -12,6 +12,7 @@ import static artificial.intelligence.tictactoe.Constants.ROWS_IN_COLUMN;
 @AllArgsConstructor(staticName = "of")
 class Board {
     Player[] playersOnField;
+    private static int moves;
     private static final int[][] FIELDS_IN_ROW = {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}
     };
@@ -26,6 +27,8 @@ class Board {
             {0, 4, 8}, {2, 4, 6}
     };
     private static final int[] RESULT_RETURNED_IN_DIAGONAL = {4, 4};
+
+    static final int DRAW = -1;
 
     void prepareBoard() {
         for (int i = 0; i < FIELDS_ON_BOARD; i++) {
@@ -78,6 +81,9 @@ class Board {
         if (checkStatementsOnBoard(FIELDS_IN_DIAGONAL[1][0], FIELDS_IN_DIAGONAL[1][1], FIELDS_IN_DIAGONAL[1][2])) {
             return RESULT_RETURNED_IN_DIAGONAL[1];
         }
+        if (moves == FIELDS_ON_BOARD) {
+            return DRAW;
+        }
         return 0;
     }
 
@@ -88,7 +94,7 @@ class Board {
     }
 
     boolean isGameFinished(int result, Player player) {
-        return playersOnField[result] == chooseNextPlayer(player);
+        return playersOnField[result] == chooseNextPlayer(player) || moves == FIELDS_ON_BOARD;
     }
     Player chooseNextPlayer(Player player) {
         if (player == Player.BOT) {
@@ -205,12 +211,18 @@ class Board {
     void executeMove(Player player, int field) {
         Logger.log("Executing move by " + player.name());
         playersOnField[field] = player;
+        moves++;
     }
 
     GameStatus checkGameStatus(Player player) {
-        if (isGameFinished() != 0) {
+        int score = isGameFinished();
+        if (score != 0) {
             print();
             Logger.log("*** Game finished ***");
+            if (score == -1) {
+                Logger.log("Draw.");
+                return GameStatus.FINISHED;
+            }
             if (player == Player.BOT) {
                 Logger.log("You loose.");
             }
