@@ -9,10 +9,10 @@ import static artificial.intelligence.tictactoe.Constants.FIELDS_ON_BOARD;
 import static artificial.intelligence.tictactoe.Constants.ROWS_IN_COLUMN;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@AllArgsConstructor(staticName = "of")
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 class Board {
     Player[] playersOnField;
-    private static int moves;
+    private int moves;
     private static final int[][] FIELDS_IN_ROW = {
             {0, 1, 2}, {3, 4, 5}, {6, 7, 8}
     };
@@ -29,6 +29,11 @@ class Board {
     private static final int[] RESULT_RETURNED_IN_DIAGONAL = {4, 4};
 
     static final int DRAW = -1;
+
+
+    static Board of(Player[] playersOnField) {
+        return new Board(playersOnField, 0);
+    }
 
     void prepareBoard() {
         for (int i = 0; i < FIELDS_ON_BOARD; i++) {
